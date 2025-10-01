@@ -12,7 +12,9 @@ import sys
 import os
 
 # 상위 디렉토리를 path에 추가
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if app_dir not in sys.path:
+    sys.path.insert(0, app_dir)
 
 from core.data_loader import DataLoader
 from core.backtest_engine import BacktestEngine
