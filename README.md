@@ -2,6 +2,11 @@
 
 트레이딩 전략을 백테스트하고 성과를 분석하는 웹 애플리케이션입니다.
 
+## 🌐 Live Demo
+**https://backtesting-flux.up.railway.app/**
+
+지금 바로 실행 중인 애플리케이션을 확인하세요!
+
 ## 🎯 지원 전략
 
 ### 💎 Buy and Hold (매수 후 보유)
@@ -196,6 +201,32 @@ TradingBackTester/
 
 MIT License
 
-## 👥 기여
+## 🚀 배포
 
-Kelly
+이 프로젝트는 Railway에 배포되어 있습니다.
+
+- **Production URL**: https://backtesting-flux.up.railway.app/
+- **GitHub Repository**: https://github.com/jeromwolf/Backtesting
+- **자동 배포**: GitHub main 브랜치에 push하면 자동으로 재배포됩니다
+
+### Railway 배포 설정
+- `Procfile`: 실행 명령어 정의
+- `railway.toml`: Railway 설정
+- `runtime.txt`: Python 버전 지정
+
+## 📝 개발 노트
+
+자세한 개발 컨텍스트 및 히스토리는 `claude.md` 파일을 참조하세요.
+
+## 🔮 다음 버전 (v2.0) 계획
+
+- 다중 전략 동시 비교
+- 포트폴리오 백테스트
+- 파라미터 최적화 (Grid Search)
+- 거래 수수료 및 슬리피지 반영
+- 추가 기술적 지표
+
+## 👥 Contributors
+
+- **Kelly** (jeromwolf) - Project Owner & Developer
+- **Claude Code** - AI Pair Programming Assistant
