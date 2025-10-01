@@ -1,0 +1,9 @@
+strategy:
+  ticker: 'TSLA'
+  short_ma: 20
+  long_ma: 60
+  start_date: '2024-01-01'
+  end_date: '2025-10-01'
+  initial_capital: 1000
+  trade_unit_size: full
+  time_period: '1d' # daily, support for min or hour
