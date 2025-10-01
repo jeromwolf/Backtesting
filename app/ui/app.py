@@ -358,14 +358,29 @@ if run_backtest:
         # 데이터 테이블
         st.subheader("📋 시계열 데이터")
 
+        # 표시할 행 수 선택
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.write("백테스트 결과 데이터")
+        with col2:
+            show_all = st.checkbox("전체 데이터 표시", value=False)
+
         display_columns = ['open', 'high', 'low', 'close', 'volume',
                           'trade_log', 'num_stocks', 'cash', 'total_assets',
                           'cumulative_return(%)']
 
-        st.dataframe(
-            backtest_result[display_columns].tail(50),
-            use_container_width=True
-        )
+        if show_all:
+            st.dataframe(
+                backtest_result[display_columns],
+                use_container_width=True,
+                height=400
+            )
+        else:
+            st.dataframe(
+                backtest_result[display_columns].tail(50),
+                use_container_width=True
+            )
+            st.info(f"💡 최근 50개 행만 표시 중 (전체: {len(backtest_result)}개)")
 
         # Excel 다운로드
         st.markdown("---")
