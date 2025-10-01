@@ -364,46 +364,19 @@ if run_backtest:
 
         total_rows = len(backtest_result)
 
-        # 표시할 행 수 선택 (메모리 효율적)
-        col1, col2 = st.columns([2, 1])
-        with col1:
-            # 데이터 크기에 따라 최대 표시 개수 제한
-            max_display = min(1000, total_rows)  # 최대 1000개까지만
-            if total_rows > 1000:
-                num_rows = st.slider(
-                    "표시할 행 수",
-                    min_value=50,
-                    max_value=max_display,
-                    value=50,
-                    step=50
-                )
-            else:
-                num_rows = st.slider(
-                    "표시할 행 수",
-                    min_value=min(50, total_rows),
-                    max_value=total_rows,
-                    value=min(50, total_rows),
-                    step=50
-                )
-        with col2:
-            show_latest = st.radio("표시 위치", ["최근", "전체"], index=0)
-
-        # 데이터 표시
-        if show_latest == "최근":
-            display_data = backtest_result[display_columns].tail(num_rows)
-            st.info(f"💡 최근 {num_rows}개 행 표시 중 (전체: {total_rows:,}개)")
+        # 최대 1000개까지만 표시 (메모리 효율)
+        if total_rows > 1000:
+            display_data = backtest_result[display_columns].tail(1000)
+            st.warning(f"⚠️ 데이터가 {total_rows:,}개로 많아 최근 1,000개만 표시합니다. 전체 데이터는 아래 Excel 파일로 다운로드하세요.")
         else:
-            display_data = backtest_result[display_columns].head(num_rows)
-            st.info(f"💡 처음부터 {num_rows}개 행 표시 중 (전체: {total_rows:,}개)")
+            display_data = backtest_result[display_columns]
+            st.info(f"💡 전체 {total_rows:,}개 데이터 표시 중")
 
         st.dataframe(
             display_data,
             use_container_width=True,
             height=400
         )
-
-        if total_rows > 1000:
-            st.warning("⚠️ 데이터가 많아 최대 1000개까지만 표시됩니다. 전체 데이터는 Excel 파일로 다운로드하세요.")
 
         # Excel 다운로드
         st.markdown("---")
